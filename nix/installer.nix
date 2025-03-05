@@ -47,6 +47,11 @@
     # recommended for systems with little memory
     "zswap.zpool=zsmalloc"
   ];
+  zramSwap = {
+    enable = true;
+    memoryPercent = 100;
+    priority = 100;
+  };
 
   # Don't add nixpkgs to the image to save space, for our intended use case we don't need it
   system.installer.channel.enable = false;

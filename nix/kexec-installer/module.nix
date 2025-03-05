@@ -1,13 +1,20 @@
-{ config, lib, modulesPath, pkgs, ... }:
+{
+  config,
+  lib,
+  modulesPath,
+  pkgs,
+  ...
+}:
 let
-  writePython3 = pkgs.writers.makePythonWriter
-    pkgs.python3Minimal pkgs.python3Packages pkgs.buildPackages.python3Packages;
+  writePython3 =
+    pkgs.writers.makePythonWriter pkgs.python3Minimal pkgs.python3Packages
+      pkgs.buildPackages.python3Packages;
 
   # writePython3Bin takes the same arguments as writePython3 but outputs a directory (like writeScriptBin)
   writePython3Bin = name: writePython3 "/bin/${name}";
 
   restore-network = writePython3Bin "restore-network" {
-     flakeIgnore = [ "E501" ];
+    flakeIgnore = [ "E501" ];
   } ./restore_routes.py;
 
   # does not link with iptables enabled
