@@ -1,11 +1,16 @@
 # take from srvos
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   # Fallback quickly if substituters are not available.
+  nix.package = pkgs.lix;
   nix.settings.connect-timeout = 5;
 
   # Enable flakes
-  nix.settings.extra-experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.extra-experimental-features = [
+    "nix-command"
+    "flakes"
+    "pipe-operators"
+  ];
   nix.settings.extra-substituters = [ "/" ];
 
   # The default at 10 is rarely enough.
