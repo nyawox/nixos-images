@@ -9,7 +9,7 @@
   nix.settings.extra-experimental-features = [
     "nix-command"
     "flakes"
-    "pipe-operators"
+    "pipe-operator"
   ];
   nix.settings.extra-substituters = [ "/" ];
 
